@@ -82,10 +82,10 @@ export async function backupTasks(): Promise<boolean> {
         }
 
         const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-        const backupFile = path.join(DATA_DIR, 'tasks_backup_${timestamp}.json');
+        const backupFile = path.join(DATA_DIR, `tasks_backup_${timestamp}.json`);
 
         await fs.promises.copyFile(TASKS_FILE, backupFile);
-        console.log('Task has already been backed up to: ${backupFile}');
+        console.log(`Task has already been backed up to: ${backupFile}`);
 
         return true;
     } catch (error) {
