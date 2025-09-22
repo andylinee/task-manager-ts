@@ -152,7 +152,7 @@ export class TaskService {
      * @param updateData data to update
      * @returns Promise<ApiResponse<Task>>
      */
-    async udpateTask(id: TaskId, updateData: UpdateTaskInput): Promise<ApiResponse<Task>> {
+    async updateTask(id: TaskId, updateData: UpdateTaskInput): Promise<ApiResponse<Task>> {
         try {
             await this.initialize();
 
