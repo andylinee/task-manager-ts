@@ -30,7 +30,7 @@ export function createCLI(): Command {
         .description('Create a task')
         .option('-t, --title <title>', 'Task Title')
         .option('-d, --description <description>', 'Task Description')
-        .option('-due, --due-date <date>', 'Due Date (YYYY-MM-DD)')
+        .option('--due-date <date>', 'Due Date (YYYY-MM-DD)')
         .action(async (options) => {
             await handleAddTask(options);
         });
@@ -55,7 +55,7 @@ export function createCLI(): Command {
         .option('-t, --title <title>', 'New Task Title')
         .option('-d, --description <description>', 'New Task Description')
         .option('-s, --status <status>', 'New Status (todo|in_progress|completed')
-        .option('-due, --due-date <date>', 'New Due Date (YYYY-MM-DD)')
+        .option('--due-date <date>', 'New Due Date (YYYY-MM-DD)')
         .action(async (id, options) => {
             await handleUpdateTask(id, options);
         });

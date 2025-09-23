@@ -1,17 +1,29 @@
 {
   "name": "task-manager-ts",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "TypeScript Task Management Tool - Learning Project",
+  "main": "dist/index.js",
+  "bin": {
+    "task-manager": "./dist/index.js"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
-    "watch": "nodemon --exec ts-node src/index.ts"
+    "watch": "nodemon --exec ts-node src/index.ts",
+    "clean": "rm -rf dist",
+    "rebuild": "npm run clean && npm run build",
+    "link": "npm run build && npm link",
+    "unlink": "npm unlink -g task-manager-ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "typescript",
+    "cli",
+    "task-management",
+    "learning-project"
+  ],
+  "author": "andylinee",
+  "license": "MIT",
   "devDependencies": {
     "@types/inquirer": "^9.0.9",
     "@types/node": "^24.5.2",
