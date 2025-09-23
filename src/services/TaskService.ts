@@ -253,7 +253,7 @@ export class TaskService {
      * @returns Promise<ApiResponse<Task>>
      */
     async updateTaskStatus(id: TaskId, status: TaskStatus): Promise<ApiResponse<Task>> {
-        return this.udpateTask(id, { status });
+        return this.updateTask(id, { status });
     }
 
     /**

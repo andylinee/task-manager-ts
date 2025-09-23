@@ -100,7 +100,7 @@ async function handleAddTask(options: any): Promise<void> {
         let taskData: CreateTaskInput;
 
         if (options.title) {
-            // Use CLI parameters
+            // Use CLI arguments
             taskData = {
                 title: options.title,
                 description: options.description,
