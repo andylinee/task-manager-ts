@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "task_mfw8nemv_ljp",
+    "title": "Learn TypeScript",
+    "description": "Finish the task management tool project",
+    "status": "in_progress",
+    "createdAt": "2025-09-23T07:33:11.767Z",
+    "updatedAt": "2025-09-24T09:05:16.701Z"
+  },
+  {
+    "id": "task_mfw8pvv1_kgn",
+    "title": "Read TypeScript document",
+    "description": "Take a deep dive into advanced features",
+    "status": "todo",
+    "createdAt": "2025-09-23T07:35:07.405Z",
+    "updatedAt": "2025-09-23T07:35:07.405Z",
+    "dueDate": "2024-09-30T00:00:00.000Z"
+  },
+  {
+    "id": "task_mfxrc8nw_ivc",
+    "title": "Read TypeScript Documents",
+    "description": "Take a deep dive into advanced features",
+    "status": "todo",
+    "createdAt": "2025-09-24T09:04:09.692Z",
+    "updatedAt": "2025-09-24T09:04:09.692Z",
+    "dueDate": "2025-09-30T00:00:00.000Z"
+  }
+]
