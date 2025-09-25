@@ -212,7 +212,7 @@ export function assertValidTaskId(id: unknown): asserts id is string {
 // === Usage Examples ===
 
 /**
- * Real application for advanced type
+ * Real Applications for Advanced Types
  */
 export class AdvancedTaskService {
     // Use Record Type to manage the count of status
