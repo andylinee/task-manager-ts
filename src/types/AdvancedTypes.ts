@@ -104,3 +104,38 @@ export type TaskEventNames = {
 export type TaskValidators = {
     [K in keyof Task as Task[K] extends string ? K : never]: (value: string) => boolean;
 };
+
+
+// === Conditional Types ===
+
+/**
+ * 15. Basic Conditional Types
+ */
+export type TaskField<T> = T extends string ? 'text' :
+    T extends number ? 'number' :
+    T extends Date ? 'date' :
+    T extends boolean ? 'checkbox' : 'unknown';
+
+/**
+ * 16. Distributive Conditional Types
+ */
+export type ExtractArrayType<T> = T extends (infer U)[] ? U : T;
+export type TaskArrayType = ExtractArrayType<Task[]>; // inferred as Task
+
+/**
+ * 17. Conditional Types and infer keywords
+ */
+export type ExtractPromiseType<T> = T extends Promise<infer U> ? U : T;
+export type TaskPromiseResult = ExtractPromiseType<Promise<Task>>; // inferred as Task
+
+/**
+ * 18. Complex Conditional Types - Deep Property Extraction
+ */
+export type DeepTaskProperty<T, K extends string> =
+    K extends `${infer First}.${infer Rest}`
+    ? First extends keyof T
+    ? DeepTaskProperty<T[First], Rest>
+    : never
+    : K extends keyof T
+    ? T[K]
+    : never;
