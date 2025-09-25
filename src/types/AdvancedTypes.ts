@@ -1,5 +1,6 @@
 import { Task, TaskStatus } from './Task';
 
+
 // === Utility Types ===
 
 /**
@@ -72,3 +73,34 @@ export type TaskServiceResult<T> = ReturnType<() => AsyncTaskResult<T>>;
  */
 type TaskFilterFunction = (task: Task, filter: string) => boolean;
 export type FilterParameters = Parameters<TaskFilterFunction>;
+
+
+// === Mapped Types ===
+
+/**
+ * 11. Basic Mapped Types - Label each property as optional
+ */
+export type OptionalTask = {
+    [K in keyof Task]?: Task[K];
+};
+
+/**
+ * 12. Conditional Mapped Types - Change property by the condition
+ */
+export type StringifyTask = {
+    [K in keyof Task]: Task[K] extends Date ? string : Task[K];
+};
+
+/**
+ * 13. Combination of template string types and mapped types
+ */
+export type TaskEventNames = {
+    [K in keyof Task as `on${Capitalize<string & K>}Change`]: (newValue: Task[K]) => void;
+};
+
+/**
+ * 14. Advanced Mapped Types - Create the interface of validators
+ */
+export type TaskValidators = {
+    [K in keyof Task as Task[K] extends string ? K : never]: (value: string) => boolean;
+};
