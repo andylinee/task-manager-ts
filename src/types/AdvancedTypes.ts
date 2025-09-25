@@ -181,3 +181,29 @@ export interface QueryBuilder<T> {
  * Task Query Builder
  */
 export type TaskQueryBuilder = QueryBuilder<Task>;
+
+
+// === Useful Type Guard Functions ===
+
+/**
+ * Type Guard - check if complete task
+ */
+export function isCompleteTask(task: PartialTask): task is Task {
+    return !!(task.id && task.title && task.status && task.createdAt && task.updatedAt);
+}
+
+/**
+ * Type Guard - check if has valid due date
+ */
+export function hasValidDueDate(task: Task): task is Task & { dueDate: NonNullable<Date> } {
+    return task.dueDate instanceof Date && !isNaN(task.dueDate.getTime());
+}
+
+/**
+ * Type Assertion Function
+ */
+export function assertValidTaskId(id: unknown): asserts id is string {
+    if (typeof id !== 'string' || !id.trim()) {
+        throw new Error('Invalid task ID');
+    }
+}
