@@ -139,3 +139,45 @@ export type DeepTaskProperty<T, K extends string> =
     : K extends keyof T
     ? T[K]
     : never;
+
+
+// === Exmaples of Real Applications ===
+
+/**
+ * Task Builder - Use multiple advanced types
+ */
+export interface TaskBuilder {
+    create(data: CreateTaskData): Task;
+    update(id: string, data: PartialTask): Task;
+    validate(data: RequiredTaskInput): boolean;
+    summarize(task: Task): TaskSummary;
+}
+
+/**
+ * Event System with Type Safety
+ */
+export interface TaskEventMap {
+    'task:created': { task: Task };
+    'task:updated': { task: Task; changes: PartialTask };
+    'task:deleted': { id: string };
+    'task:status:changed': { task: Task; oldStatus: TaskStatus; newStatus: TaskStatus };
+}
+
+export type TaskEventListener<T extends keyof TaskEventMap> = (
+    event: TaskEventMap[T]
+) => void;
+
+/**
+ * Query Builder with Type Safety
+ */
+export interface QueryBuilder<T> {
+    where<K extends keyof T>(field: K, value: T[K]): this;
+    select<K extends keyof T>(...fields: K[]): Pick<T, K>[];
+    orderBy<K extends keyof T>(field: K, direction: 'asc' | 'desc'): this;
+    limit(count: number): this;
+}
+
+/**
+ * Task Query Builder
+ */
+export type TaskQueryBuilder = QueryBuilder<Task>;
