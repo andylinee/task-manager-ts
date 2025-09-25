@@ -207,3 +207,42 @@ export function assertValidTaskId(id: unknown): asserts id is string {
         throw new Error('Invalid task ID');
     }
 }
+
+
+// === Usage Examples ===
+
+/**
+ * Real application for advanced type
+ */
+export class AdvancedTaskService {
+    // Use Record Type to manage the count of status
+    getStatusCounts(tasks: Task[]): TaskStatusCount {
+        return tasks.reduce((counts, task) => {
+            counts[task.status] = (counts[task.status] || 0) + 1;
+            return counts;
+        }, {} as TaskStatusCount);
+    }
+
+    // Use Pick Type to return summarized info
+    getTaskSummaries(tasks: Task[]): TaskSummary[] {
+        return tasks.map(task => ({
+            id: task.id,
+            title: task.title,
+            status: task.status
+        }));
+    }
+
+    // Use Conditional Type to manage different kinds of update
+    updateTaskField<K extends keyof Task>(
+        task: Task,
+        field: K,
+        value: Task[K]
+    ): Task {
+        return { ...task, [field]: value, updatedAt: new Date() };
+    }
+
+    // Use Type Guard to ensure type safety
+    processTasksWithDueDates(tasks: Task[]): Array<Task & { dueDate: Date }> {
+        return tasks.filter(hasValidDueDate);
+    }
+}
